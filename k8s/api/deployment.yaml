@@ -13,12 +13,12 @@ spec:
     spec: 
       containers: 
         - name: api 
-          image: bornready/api-k8s-produto:latest 
+          image: bornready/api-k8s-produto:v1
           ports: 
             - containerPort: 8080 
           env: 
             - name: MONGODB_URI 
-              value: mongodb://mongoadmin@mongopwd@mongodb-service:27017/admin 
+              value: mongodb://mongouser:mongopwd@mongo-service:27017/admin 
 
 --- 
 apiVersion: v1 
@@ -32,5 +32,5 @@ spec:
     - port: 80 
       targetPort: 8080 
       nodePort: 30000
-  type: NodePort 
+  type: LoadBalancer 
 
